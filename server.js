@@ -4,6 +4,7 @@ require("dotenv").config();
 
 const express = require("express");
 const connectDB = require("./config/db");
+const cors = require("cors");
 
 // Alag files mein likhe routes aur middleware ko import kar rahe hain.
 const authRoutes = require("./routes/auth.routes");
@@ -15,6 +16,9 @@ const app = express();
 
 // Client JSON bhejega to Express us JSON ko JavaScript object mein convert karega.
 // Iske bina req.body mein JSON data nahi milega.
+app.use(cors({
+  origin: "http://localhost:5173",
+}));
 app.use(express.json({ limit: "20kb" }));
 
 // Basic check: browser mein http://localhost:3000 kholkar dekh sakte hain ki server chal raha hai.
